@@ -1,9 +1,13 @@
 <launch>
 
   <include file="$(find mystery_package)/launch/launch_mystery.launch" />
-  
-  <group ns="hw2">
+
+  <group ns="calvin_hw2">
     <node pkg="calvin_hw2" name="MyPublisher" type="MyPublisher.py" />
+    <node pkg="calvin_hw2" name="MySubscriber" type="MySubscriber.py" />
   </group>
+
+  <node pkg="rqt_graph" name="rqt_graph" type="rqt_graph" />
+  <node pkg="rqt_console" name="rqt_console" type="rqt_console" />
 
 </launch>

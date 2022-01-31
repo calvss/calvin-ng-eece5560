@@ -18,6 +18,6 @@ if __name__ == '__main__':
 
     rospy.logdebug("starting loop")
     while not rospy.is_shutdown():
-        n = randint(0, 10)
+        n = random.randint(0, 10)
         myNode.publisher.publish(n)
         rate.sleep()
