@@ -1,7 +1,7 @@
 #!/bin/bash
 
-HW_PACKAGE="learning_ros"
-HW_LAUNCH="hw3.launch"
+HW_PACKAGE="calvin_hw2"
+HW_LAUNCH="calvin_hw3.launch"
 
 source /environment.sh
 
