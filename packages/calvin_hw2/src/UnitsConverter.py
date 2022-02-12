@@ -9,13 +9,26 @@ class UnitsConverter:
 
         self.publisher = rospy.Publisher('convertedOutput', UnitsLabelled, queue_size=10)
         self.pub_msg = UnitsLabelled()
-        self.pub_msg.units = "feet"
 
     def callback(self, msg):
-        metersPerFoot = 0.3048
+        # define conversion factors (meters per X)
+        factorsDict = {
+            'meters': 1.0,
+            'smoots': 1.7018,
+            'feet': 0.3048
+        }
+
+        if rospy.has_param("output_units"):
+            self.outputUnits = rospy.get_param("output_units")
+        else:
+            self.outputUnits = "smoots" # default to smoots
+
+        conversionFactor = factorsDict[self.outputUnits]
+
         self.meters = msg.value
-        self.feet = self.meters / metersPerFoot
-        self.pub_msg.value = self.feet
+        self.output = self.meters / conversionFactor
+        self.pub_msg.value = self.output
+        self.pub_msg.units = self.outputUnits
         self.publisher.publish(self.pub_msg)
 
 if __name__ == '__main__':

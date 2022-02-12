@@ -11,6 +11,7 @@
   </group>
 
   <group ns="calvin_hw4">
+    <param name="output_units" type="string" value="smoots"/>
     <node pkg="calvin_hw2" name="UnitsConverter" type="UnitsConverter.py" />
   </group>
 
