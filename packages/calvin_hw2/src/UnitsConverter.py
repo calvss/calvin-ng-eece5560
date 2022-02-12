@@ -7,7 +7,7 @@ class UnitsConverter:
     def __init__(self):
         rospy.Subscriber('/mystery/output2', UnitsLabelled, self.callback)
 
-        self.publisher = rospy.Publisher('outputFeet', UnitsLabelled, queue_size=10)
+        self.publisher = rospy.Publisher('convertedOutput', UnitsLabelled, queue_size=10)
         self.pub_msg = UnitsLabelled()
         self.pub_msg.units = "feet"
 

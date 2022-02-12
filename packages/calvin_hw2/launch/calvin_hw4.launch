@@ -2,12 +2,15 @@
   <group ns="mystery">
     <node pkg="mystery_package" name="mystery_node" type="mystery_node.py"/>
     <node pkg="mystery_package" name="unit_listener" type="unit_listener.py">
-      <remap from="/mystery/output2" to="/calvin_hw2/outputFeet"/>
+      <remap from="/mystery/output2" to="/calvin_hw4/convertedOutput"/>
     </node>
   </group>
 
   <group ns="calvin_hw2">
     <node pkg="calvin_hw2" name="MyPublisher" type="MyPublisher.py" />
+  </group>
+
+  <group ns="calvin_hw4">
     <node pkg="calvin_hw2" name="UnitsConverter" type="UnitsConverter.py" />
   </group>
 
