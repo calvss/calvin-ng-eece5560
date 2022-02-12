@@ -1,0 +1,17 @@
+<launch>
+  <group ns="mystery">
+    <node pkg="mystery_package" name="mystery_node" type="mystery_node.py"/>
+    <node pkg="mystery_package" name="unit_listener" type="unit_listener.py">
+      <remap from="/mystery/output2" to="/calvin_hw2/outputFeet"/>
+    </node>
+  </group>
+
+  <group ns="calvin_hw2">
+    <node pkg="calvin_hw2" name="MyPublisher" type="MyPublisher.py" />
+    <node pkg="calvin_hw2" name="UnitsConverter" type="UnitsConverter.py" />
+  </group>
+
+  <node pkg="rqt_graph" name="rqt_graph" type="rqt_graph" />
+  <node pkg="rostopic" name="rostopic" type="rostopic" output="screen" args="echo /calvin_hw2/outputFeet" />
+
+</launch>
