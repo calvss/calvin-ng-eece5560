@@ -12,6 +12,6 @@
   </group>
 
   <node pkg="rqt_graph" name="rqt_graph" type="rqt_graph" />
-  <node pkg="rostopic" name="rostopic" type="rostopic" output="screen" args="echo /calvin_hw2/outputFeet" />
+  <node pkg="rqt_console" name="rqt_console" type="rqt_console" />
 
 </launch>
