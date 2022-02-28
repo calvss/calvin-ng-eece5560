@@ -1,7 +1,7 @@
 #!/bin/bash
 
-HW_PACKAGE="homework5"
-HW_LAUNCH="hw5.launch"
+HW_PACKAGE="calvin_hw2"
+HW_LAUNCH="calvin_hw5.launch"
 
 source /environment.sh
 

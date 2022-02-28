@@ -1,0 +1,9 @@
+<launch>
+  <group ns="calvin_hw2">
+    <node pkg="calvin_hw2" name="MatrixMath" type="MatrixMath.py" />
+  </group>
+
+  <node pkg="rqt_graph" name="rqt_graph" type="rqt_graph" />
+  <node pkg="rqt_console" name="rqt_console" type="rqt_console" />
+
+</launch>
