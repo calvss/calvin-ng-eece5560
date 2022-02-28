@@ -11,15 +11,17 @@ class MatrixMath:
         self.publisherWorld = rospy.Publisher('/world_coord', Vector2D, queue_size=10)
 
     def callback(self, msg):
-        tf_sensorRobot = [[-1,  0, -1],
+        tf_sensorRobot = np.array(
+                         [[-1,  0, -1],
                           [ 0, -1,  0],
-                          [ 0,  0,  1]]
+                          [ 0,  0,  1]])
 
-        tf_robotWorld = [[np.cos(np.radians(135)), -1 * np.sin(np.radians(135)), 3],
+        tf_robotWorld = np.array(
+                        [[np.cos(np.radians(135)), -1 * np.sin(np.radians(135)), 3],
                          [np.sin(np.radians(135)),      np.cos(np.radians(135)), 2],
-                         [                      0,                            0, 1]]
+                         [                      0,                            0, 1]])
 
-        sensorCoord = [[0], [0], [1]]
+        sensorCoord = np.array([[0], [0], [1]])
         sensorCoord[0] = [msg.x]
         sensorCoord[1] = [msg.y]
         robotCoord = tf_sensorRobot * sensorCoord
