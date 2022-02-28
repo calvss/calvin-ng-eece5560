@@ -5,17 +5,17 @@ import rospy
 from duckietown_msgs.msg import Vector2D
 
 class MatrixMath:
-    self.tf_sensorRobot = np.array(
+    tf_sensorRobot = np.array(
                      [[-1,  0, -1],
                       [ 0, -1,  0],
                       [ 0,  0,  1]])
 
-    self.tf_robotWorld = np.array(
+    tf_robotWorld = np.array(
                     [[np.cos(np.radians(135)), -1 * np.sin(np.radians(135)), 3],
                      [np.sin(np.radians(135)),      np.cos(np.radians(135)), 2],
                      [                      0,                            0, 1]])
 
-    tf_sensorWorld = self.tf_robotWorld.dot(self.tf_sensorRobot)
+    tf_sensorWorld = tf_robotWorld.dot(tf_sensorRobot)
 
     def __init__(self):
         rospy.Subscriber('/sensor_coord', Vector2D, self.callback)
