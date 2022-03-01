@@ -18,7 +18,7 @@ class MatrixMath:
     tf_sensorWorld = tf_robotWorld.dot(tf_sensorRobot)
 
     def __init__(self):
-        rospy.Subscriber('/input_coord', Vector2D, self.callback)
+        rospy.Subscriber('/sensor_coord', Vector2D, self.callback)
         self.publisherRobot = rospy.Publisher('/robot_coord', Vector2D, queue_size=10)
         self.publisherWorld = rospy.Publisher('/world_coord', Vector2D, queue_size=10)
 
