@@ -1,7 +1,7 @@
 #!/bin/bash
 
-HW_PACKAGE="homework6"
-HW_LAUNCH="hw6.launch"
+HW_PACKAGE="calvin_odometry"
+HW_LAUNCH="calvin_hw6.launch"
 
 source /environment.sh
 

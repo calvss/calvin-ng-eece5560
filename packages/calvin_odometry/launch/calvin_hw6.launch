@@ -1,0 +1,9 @@
+<launch>
+
+  <node pkg="rosbag" name="player" type="play" args="-d 5 --clock $(find odometry_hw)/odom_hw.bag" />
+
+  <group ns="calvin_hw6">
+    <node pkg="calvin_hw6" name="calvin_hw6" type="calvin_hw6.py" />
+  </group>
+
+</launch>
