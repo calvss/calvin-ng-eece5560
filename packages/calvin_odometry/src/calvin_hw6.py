@@ -33,8 +33,13 @@ class calvin_hw6:
         x_right = msg.dist_wheel_right
 
         # ---- robot frame ----
-        dx = (x_right + x_left) / 2
-        dy = 0
+        dx = (x_right + x_left) / 2                 # small angle approximation
+        dy = 0                                      # no sideways drift
+
+        # s = r * theta
+        # assuming the robot draws a circle with its wheels while turning
+        # one wheel is the center of rotation while the other traces the arc
+        # uses small angle approximation for simplicity
         dtheta = (x_right - x_left) / wheelbase_width
 
         delta = np.array(
