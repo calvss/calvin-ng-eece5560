@@ -4,7 +4,7 @@ import rospy
 from odometry_hw.msg import DistWheel
 from odometry_hw.msg import Pose2D
 
-class Calvin_hw6:
+class calvin_hw6:
     def __init__(self):
         rospy.Subscriber('/dist_wheel', DistWheel, self.callback)
 
@@ -17,5 +17,5 @@ class Calvin_hw6:
 
 if __name__ == '__main__':
     rospy.init_node('calvin_hw6')
-    myNode = Calvin_hw6()
+    myNode = calvin_hw6()
     rospy.spin()
