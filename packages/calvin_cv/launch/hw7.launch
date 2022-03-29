@@ -1,0 +1,7 @@
+<launch>
+    <node name="image_pub" pkg="image_processing_hw" type="image_pub_all.py"/>
+    <node name="ImageThresholder" pkg="calvin_cv" type="ImageThresholder.py"/>
+    <node pkg="rqt_image_view" type="rqt_image_view" name="image_view_cropped" args="/image_cropped"/>
+    <node pkg="rqt_image_view" type="rqt_image_view" name="image_view_white" args="/image_white"/>
+    <node pkg="rqt_image_view" type="rqt_image_view" name="image_view_yellow" args="/image_yellow"/>
+</launch>
