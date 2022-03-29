@@ -47,7 +47,7 @@ class ImageThresholder:
         cleanImage = cv2.morphologyEx(HSVImage, cv2.MORPH_CLOSE, element)
 
         element = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (10, 10))
-        cleanImage = cv2.morphologyEx(HSVImage, cv2.MORPH_OPEN, element)
+        cleanImage = cv2.morphologyEx(cleanImage, cv2.MORPH_OPEN, element)
 
         whiteImage = cv2.inRange(cleanImage, (self.WHITE["hueL"], self.WHITE["satL"], self.WHITE["valL"]), (self.WHITE["hueH"], self.WHITE["satH"], self.WHITE["valH"]))
         yellowImage = cv2.inRange(cleanImage, (self.YELLOW["hueL"], self.YELLOW["satL"], self.YELLOW["valL"]), (self.YELLOW["hueH"], self.YELLOW["satH"], self.YELLOW["valH"]))
