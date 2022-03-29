@@ -19,7 +19,7 @@ class ImageThresholder:
     YELLOW = {
         "hueL" : 27,
         "hueH" : 32,
-        "satL" : 130,
+        "satL" : 140,
         "satH" : 255,
         "valL" : 225,
         "valH" : 255
@@ -40,21 +40,27 @@ class ImageThresholder:
 
         rows, columns, _ = cvImage.shape
         croppedImage = cvImage[int(rows/2):]
+
         HSVImage = cv2.cvtColor(croppedImage, cv2.COLOR_BGR2HSV)
 
+        element = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
+        cleanImage = cv2.morphologyEx(HSVImage, cv2.MORPH_CLOSE, element)
+
+        element = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (10, 10))
+        cleanImage = cv2.morphologyEx(HSVImage, cv2.MORPH_OPEN, element)
+
+        whiteImage = cv2.inRange(cleanImage, (self.WHITE["hueL"], self.WHITE["satL"], self.WHITE["valL"]), (self.WHITE["hueH"], self.WHITE["satH"], self.WHITE["valH"]))
+        yellowImage = cv2.inRange(cleanImage, (self.YELLOW["hueL"], self.YELLOW["satL"], self.YELLOW["valL"]), (self.YELLOW["hueH"], self.YELLOW["satH"], self.YELLOW["valH"]))
+
+        element = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (15, 15))
+
         ros_cropped = self.bridge.cv2_to_imgmsg(croppedImage, "bgr8")
-        self.cropPublisher.publish(ros_cropped)
-
-        whiteImage = cv2.inRange(HSVImage, (self.WHITE["hueL"], self.WHITE["satL"], self.WHITE["valL"]), (self.WHITE["hueH"], self.WHITE["satH"], self.WHITE["valH"]))
-
         ros_white = self.bridge.cv2_to_imgmsg(whiteImage, "mono8")
-        self.whitePublisher.publish(ros_white)
-
-        yellowImage = cv2.inRange(HSVImage, (self.YELLOW["hueL"], self.YELLOW["satL"], self.YELLOW["valL"]), (self.YELLOW["hueH"], self.YELLOW["satH"], self.YELLOW["valH"]))
-
         ros_yellow = self.bridge.cv2_to_imgmsg(yellowImage, "mono8")
-        self.yellowPublisher.publish(ros_yellow)
 
+        self.cropPublisher.publish(ros_cropped)
+        self.whitePublisher.publish(ros_white)
+        self.yellowPublisher.publish(ros_yellow)
 
 if __name__=="__main__":
     rospy.init_node("ImageThresholder")
