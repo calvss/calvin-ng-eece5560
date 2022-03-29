@@ -1,7 +1,7 @@
 #!/bin/bash
 
 HW_PACKAGE="calvin_cv"
-HW_LAUNCH="hw7.launch"
+HW_LAUNCH="calvin_hw7.launch"
 
 source /environment.sh
 
