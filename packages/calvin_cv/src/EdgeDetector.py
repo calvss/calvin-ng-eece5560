@@ -52,13 +52,14 @@ class EdgeDetector:
         self.yellowPublisher.publish(ros_yellow_edges)
 
     def getHough(self, image, thickness):
-        element = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (thickness, thickness))
-        binaryEdges = cv2.morphologyEx(image, cv2.MORPH_GRADIENT, element)
+        #element = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (thickness, thickness))
+        #binaryEdges = cv2.morphologyEx(image, cv2.MORPH_GRADIENT, element)
 
+        binaryEdges = cv2.Canny(image, 100, 200)
         ros_all_edges = self.bridge.cv2_to_imgmsg(binaryEdges, "mono8")
         self.cropPublisher.publish(ros_all_edges)
 
-        houghLines = cv2.HoughLinesP(binaryEdges, 1, 3.14159/180, 20, None, 10, 10)
+        houghLines = cv2.HoughLinesP(binaryEdges, 1, 3.14159/180, 20, None, 15, 10)
         return houghLines
 
     def drawLines(self, image, lines):
