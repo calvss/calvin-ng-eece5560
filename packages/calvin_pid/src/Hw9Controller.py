@@ -7,21 +7,26 @@ import calvin_controller
 
 class Hw9Controller:
     def __init__(self):
-        rospy.Subscriber("error", Float32, self.callback)
+        rospy.Subscriber("error", Float32, self.positionUpdater)
+        rospy.Subscriber("velocity", Float32, self.velocityUpdater)
         self.publisher = rospy.Publisher("control_input", Float32, queue_size=10)
 
-        self.controller = calvin_controller.PID()
+        self.positionController = calvin_controller.PID(kp = 0.45, ki = 0.1, kd = 2, window = 5)
+        self.velocityController = calvin_controller.PID(kp = 1)
 
-    def callback(self, errorMsg):
-        control = self.controller.update(errorMsg.data)
+        self.desiredVelocity = 0
+
+    def positionUpdater(self, msg):
+        self.desiredVelocity = self.positionController.update(msg.data)
+
+    def velocityUpdater(self, msg):
+        velocityError = self.desiredVelocity - msg.data
+        control = self.velocityController.update(velocityError)
         self.publisher.publish(control)
+        rospy.logwarn("ve" + str(velocityError) + "  v" + str(self.desiredVelocity))
 
 if __name__ == '__main__':
     rospy.init_node('calvin_hw9')
     myNode = Hw9Controller()
-    myNode.controller.kp = 0.5
-    myNode.controller.ki = 0.1
-    myNode.controller.kd = 10
-    myNode.controller.window = 4
     rospy.set_param("controller_ready", "true")
     rospy.spin()

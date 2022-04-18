@@ -16,7 +16,7 @@ class VehicleDynamics:
         self.x = p0 # initial position, m
         self.noise_mag = noise_mag # magnitude of noise
         self.control = 0 # control input, m/s^2
-        
+
     def iterate(self, dt):
         # a = engine acceleration - friction - drag
         self.xdd = self.control - \
@@ -40,7 +40,7 @@ if __name__ == '__main__':
         pub_x = rospy.Publisher("position", Float32, queue_size=10)
         pub_d = rospy.Publisher("desired", Float32, queue_size=10)
         pub_error = rospy.Publisher("error", Float32, queue_size=10)
-        
+
         rate = rospy.Rate(0.5)
         # wait until param says controller is ready
         while not rospy.is_shutdown():
@@ -49,7 +49,7 @@ if __name__ == '__main__':
                     break
             rospy.logwarn("Waiting for controller_ready to be true")
             rate.sleep()
-        
+
         # wait until param says graph is ready
         while not rospy.is_shutdown():
             if rospy.has_param("graph_ready"):
@@ -57,7 +57,7 @@ if __name__ == '__main__':
                     break
             rospy.logwarn("Waiting for graph_ready to be true")
             rate.sleep()
-        
+
         rospy.logwarn("Starting dynamics")
         rate = rospy.Rate(1.0/time_step)
         # run vehicle dynamics for ~10 seconds
@@ -65,7 +65,7 @@ if __name__ == '__main__':
         while not rospy.is_shutdown():
             time_elapsed = rospy.get_time() - start_time
             # quit after 30 sec of running
-            if time_elapsed > 30:
+            if time_elapsed > 15:
                 rospy.set_param("controller_ready", "false")
                 rospy.logwarn("Time limit reached -- stopping dynamics")
                 exit()
