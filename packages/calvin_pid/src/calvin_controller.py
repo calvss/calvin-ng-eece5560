@@ -15,7 +15,7 @@ class PID:
     def update(self, error):
         # if this is the first time to update, pastErrors is an empty list
         if not self.pastErrors:
-            dError = error
+            dError = -1 * error
         else:
             dError = error - self.pastErrors[-1]
 
