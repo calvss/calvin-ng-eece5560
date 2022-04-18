@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-import rospy
-
 class PID:
     def __init__(self, kp, ki, kd, dt, window=1000):
         self.kp = kp
