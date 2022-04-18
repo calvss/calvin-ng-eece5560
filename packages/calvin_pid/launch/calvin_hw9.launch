@@ -1,0 +1,8 @@
+<launch>
+
+  <group ns="calvin_hw9">
+    <include file="$(find controls_hw)/launch/start_dynamics.launch" />
+    <node pkg="calvin_pid" name="calvin_hw9" type="Hw9Controller.py" />
+  </group>
+
+</launch>
