@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 class PID:
-    def __init__(self, kp, ki, kd, window=1000):
+    def __init__(self, kp=0, ki=0, kd=0, window=1000):
         self.kp = kp
         self.ki = ki
         self.kd = kd
