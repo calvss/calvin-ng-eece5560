@@ -12,9 +12,9 @@ class Hw9Controller:
 
         self.controller = calvin_controller.PID(kp=kp, ki=ki, kd=kd)
 
-    def callback(self, error):
-        control = self.controller.update(error)
-        self.publisher.Publish(control)
+    def callback(self, errorMsg):
+        control = self.controller.update(errorMsg.data)
+        self.publisher.publish(control)
 
 if __name__ == '__main__':
     rospy.init_node('calvin_hw9')

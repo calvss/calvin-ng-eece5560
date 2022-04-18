@@ -22,7 +22,7 @@ class PID:
         self.pastErrors.append(error)
         self.pastErrors = self.pastErrors[-self.window:] # slice the list to keep only the last 'n' entries
 
-        integral = sum(pastErrors)
+        integral = sum(self.pastErrors)
 
         control = (error * self.kp) + (dError * self.kd) + (integral * self.ki)
 
