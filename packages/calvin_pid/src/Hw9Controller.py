@@ -18,5 +18,6 @@ class Hw9Controller:
 
 if __name__ == '__main__':
     rospy.init_node('calvin_hw9')
-    myNode = Hw9Controller()
+    myNode = Hw9Controller(kp = 1, ki = 0, kd = 0)
+    rospy.set_param("controller_ready", "true")
     rospy.spin()
