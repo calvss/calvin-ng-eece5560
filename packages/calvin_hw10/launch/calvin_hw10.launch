@@ -2,6 +2,7 @@
   <node pkg="rqt_console" name="rqt_console" type="rqt_console" />
   <group ns="calvin_hw10">
     <include file="$(find example_service)/launch/fibonacci.launch" />
+    <include file="$(find example_action_server)/launch/fibonacci.launch" />
     <node pkg="calvin_hw10" name="ActionServiceNode" type="ActionServiceNode.py" />
   </group>
 </launch>
