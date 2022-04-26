@@ -17,6 +17,9 @@ def fibonacciClientTimer(x):
 
 if __name__ == '__main__':
     rospy.init_node('ActionServiceNode')
+
+    rospy.logwarn("Sending service request for order(3). Blocking. . .")
     rospy.logwarn(fibonacciClientTimer(3))
+    rospy.logwarn("Sending service request for order(15). Blocking. . .")
     rospy.logwarn(fibonacciClientTimer(15))
     rospy.spin()
