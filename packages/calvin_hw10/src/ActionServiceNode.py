@@ -8,10 +8,10 @@ def fibonacciClientTimer(x):
     try:
         fibonacciProxy = rospy.ServiceProxy('calc_fibonacci', Fibonacci)
 
-        startTime = rospy.get_rostime()
+        startTime = rospy.get_time()
         serviceResponse = fibonacciProxy(x)
-        elapsedTime = rospy.get_rostime() - startTime
-        return elapsedTime
+        elapsedTime = rospy.get_time() - startTime
+        return [elapsedTime, serviceResponse]
     except rospy.ServiceException as e:
         print("Service call failed: %s", e)
 
